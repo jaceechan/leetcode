@@ -23,7 +23,7 @@ https://leetcode-cn.com/problems/add-two-numbers/
  * }
  */
 
-
+// 实现链表节点
 class ListNode {
   constructor(val) {
     this.val = val
@@ -32,6 +32,7 @@ class ListNode {
 }
 
 /* 
+实现链表
 getNode(index)：获取链表中第 index 个节点的值。如果索引无效，则返回-1。
 addAtHead(val)：在链表的第一个元素之前添加一个值为 val 的节点。插入后，新节点将成为链表的第一个节点。
 addAtTail(val)：将值为 val 的节点追加到链表的最后一个元素。
