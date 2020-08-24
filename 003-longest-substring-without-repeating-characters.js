@@ -33,23 +33,74 @@ var lengthOfLongestSubstring1 = function(s) {
   let max = 0
   const srtArr = s.split('') 
   srtArr.forEach((word, index) => {
-      const words = {}
-      let count = 0
-      for (var i = index; i < s.length; i++) {
-          if (words[srtArr[i]] !== undefined) break
-       
-          words[srtArr[i]] = index
-          count++ 
-          
-          if (count > max) {
-              max = count
-          }
+    const words = {}
+    let count = 0
+    for (var i = index; i < s.length; i++) {
+      if (words[srtArr[i]] !== undefined) break
+    
+      words[srtArr[i]] = index
+      count++ 
+      
+      if (count > max) {
+          max = count
       }
+    }
   })
   return max
 };
 
+// lengthOfLongestSubstring2: 运行时间: 668 ms 内存消耗: 58.3 MB
+	
+
 console.log('abcabcbb', lengthOfLongestSubstring1('abcabcbb'))
-console.log('abcabcbb', lengthOfLongestSubstring1('bbbbb'))
-console.log('abcabcbb', lengthOfLongestSubstring1('pwwkew'))
-console.log('abcabcbb', lengthOfLongestSubstring1(' '))
+console.log('bbbbb', lengthOfLongestSubstring1('bbbbb'))
+console.log('pwwkew', lengthOfLongestSubstring1('pwwkew'))
+console.log(' ', lengthOfLongestSubstring1(' '))
+console.log('', lengthOfLongestSubstring1(''))
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring2 = function(s) {
+  let startIndex = 0
+  let wordMap = {}
+  let max = 0
+
+  s.split('').forEach((word, index) => {
+      let preIndex = wordMap[word]
+      let count = 0
+      wordMap[word] = index
+    
+      if (preIndex === undefined || preIndex < startIndex) {
+        count = index - startIndex + 1
+        if (count > max) {
+            max = count
+        }
+      } else {
+        startIndex = preIndex + 1
+      }  
+  })
+  return max
+}
+
+console.log('abcabcbb', lengthOfLongestSubstring2('abcabcbb'))
+console.log('bbbbb', lengthOfLongestSubstring2('bbbbb'))
+console.log('pwwkew', lengthOfLongestSubstring2('pwwkew'))
+console.log(' ', lengthOfLongestSubstring2(' '))
+console.log('', lengthOfLongestSubstring2(''))
+
+// lengthOfLongestSubstring2: 运行时间: 160ms 内存消耗: 44MB
+
+// TODO 思考如何达到100ms
+
+/* 
+官方题解：2种方法：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/solution/wu-zhong-fu-zi-fu-de-zui-chang-zi-chuan-by-leetc-2/
+1.暴力法 —— lengthOfLongestSubstring1
+2.滑动窗口 —— lengthOfLongestSubstring2
+
+其他警精选题解: 3种方法: https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/solution/zi-jie-leetcode3wu-zhong-fu-zi-fu-de-zui-chang-zi-/
+1. 维护数组
+2. 维护下标
+3. 优化Map 
+*/
