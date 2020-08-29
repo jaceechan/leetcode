@@ -1,5 +1,5 @@
 /* 
-https://leetcode-cn.com/problems/add-two-numbers/
+https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
 难度: 中等
 
 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
@@ -26,6 +26,7 @@ https://leetcode-cn.com/problems/add-two-numbers/
 
 
 /**
+ * 暴力解法
  * @param {string} s
  * @return {number}
  */
@@ -59,6 +60,7 @@ console.log(' ', lengthOfLongestSubstring1(' '))
 console.log('', lengthOfLongestSubstring1(''))
 
 /**
+ * 滑动窗口法
  * @param {string} s
  * @return {number}
  */
